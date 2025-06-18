@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Centro Cartográfico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
+            transition: background 0.3s, color 0.3s;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #706f6f;
+            color: rgb(253, 251, 251);
+            flex-wrap: wrap;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-title img {
+            height: 65px;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        #themeToggle {
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .main-layout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px auto;
+            flex-wrap: wrap;
+        }
+
+        .side-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-buttons button {
+            padding: 18px 30px;
+            font-size: 16px;
+            background-color: #6ca4e0;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .side-buttons button:hover {
+            transform: scale(1.05); /* animación sutil al pasar el mouse */
+        }
+        .gif-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .bottom-message {
+            margin: 40px auto 20px;
+        }
+
+        /* Modo oscuro */
+        body.dark-mode {
+            background-color: #1e1e1e;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode .button-container {
+            background-color: #333;
+        }
+
+        body.dark-mode #themeToggle {
+            background: #eee;
+            color: #000;
+        }
+
+        body.dark-mode .side-buttons button {
+            background-color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+            }
+
+            .header-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cinta superior -->
+    <header>
+        <div class="button-container">
+            <div class="logo-title">
+                <img src="Imagenes/logo2.png" alt="Logo">
+            </div>
+            <div class="header-title">Centro de Control de Información Cartográfica</div>
+            <button id="themeToggle" title="Cambiar modo">🌙</button>
+        </div>
+    </header>
+
+    <!-- Layout principal -->
+    <div class="main-layout">
+        <!-- Botones izquierdos -->
+        <div class="side-buttons">
+            <a href="https://ingalexvarela.github.io/MAPA_DER/" target="_blank"><button>Mapa DER</button></a>
+            <a href="AREA.html"><button>Mapa Concesión</button></a>
+        </div>
+
+        <!-- GIFs en el centro -->
+        <div class="gif-container">
+            <img src="https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/Right_Side.gif?raw=true" width="250px">
+        </div>
+
+        <!-- Botones derechos -->
+        <div class="side-buttons">
+            <a href="PROYECTOS.html"><button>Mapa Proyectos</button></a>
+            <a href="INFORME.html"><button>Informe</button></a>
+        </div>
+    </div>
+
+    <!-- Mensaje final abajo -->
+    <div class="bottom-message">
+        <img src="https://readme-typing-svg.herokuapp.com?color=%236FDA44&size=32&center=true&vCenter=true&width=600&height=50&lines=Plataforma+de+visualización+🗺️;Edición+y+gestión+🛠️;Para+datos+geoespaciales+🌍" alt="Mensaje final">
+
+    </div>
+
+    <!-- Script para modo claro/oscuro -->
+    <script>
+        const toggleButton = document.getElementById("themeToggle");
+
+        // Activar modo guardado
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+            toggleButton.textContent = "🌞";
+        }
+
+        toggleButton.addEventListener("click", () => {
+            const isDark = document.body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            toggleButton.textContent = isDark ? "🌞" : "🌙";
+        });
+    </script>
+
+        <!-- Footer decorativo -->
+    <div class="svg-footer">
+        <img src="https://raw.githubusercontent.com/mayhemantt/mayhemantt/Update/svg/Bottom.svg" alt="Decoración inferior" style="width: 100%; height: auto; display: block; margin-top: 40px;">
+    </div>
+
+</body>
+
+
+</html>

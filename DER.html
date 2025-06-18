@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de la Semana</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .header-buttons {
+            display: flex;
+        }
+
+        .header-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            background-color: #007bff;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        .header-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos del área de ejercicios */
+        textarea {
+            width: 90%;
+            max-width: 800px;
+            height: 200px; /* Aumentado */
+            padding: 10px;
+            font-family: monospace;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: 90%;
+            max-width: 400px;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        /* Botones en una sola línea */
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        button, select {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        select {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Consola */
+        iframe {
+            width: 90%;
+            max-width: 800px;
+            height: 450px; /* Aumentado */
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 600px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .header-buttons a, button, select {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+
+            textarea {
+                font-size: 14px;
+                height: 180px;
+            }
+
+            iframe {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ejercicio de la Semana</h1>
+        <div class="header-buttons">
+            <a href="index.html">Inicio</a>
+            <a href="editor.html">Editor</a>
+        </div>
+    </header>
+
+    <textarea id="ejercicio" placeholder="Escribe el ejercicio aquí..."></textarea>
+    <input type="password" id="clave" placeholder="Ingresa la contraseña para guardar">
+
+    <div class="botones">
+        <button onclick="guardarEjercicio()">Guardar</button>
+        <select id="lenguaje">
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+        </select>
+        <button onclick="abrirConsola()">Abrir Consola</button>
+    </div>
+
+    <iframe id="consola"></iframe>
+
+    <script>
+        const claveOfuscada = String.fromCharCode(49, 50, 51, 52); // "1234"
+
+        window.onload = function () {
+            let ejercicioGuardado = localStorage.getItem('ejercicio');
+            if (ejercicioGuardado) {
+                document.getElementById('ejercicio').value = ejercicioGuardado;
+            }
+        };
+
+        function guardarEjercicio() {
+            let claveIngresada = document.getElementById('clave').value;
+            if (claveIngresada === claveOfuscada) {
+                let ejercicio = document.getElementById('ejercicio').value;
+                localStorage.setItem('ejercicio', ejercicio);
+                alert("Ejercicio guardado exitosamente.");
+            } else {
+                alert("Clave incorrecta. No se guardó el ejercicio.");
+            }
+        }
+
+        function abrirConsola() {
+            let lenguaje = document.getElementById("lenguaje").value;
+            let url = lenguaje === "python"
+                ? "https://onecompiler.com/embed/python"
+                : "https://onecompiler.com/embed/cpp";
+
+            document.getElementById("consola").src = url;
+        }
+    </script>
+</body>
+</html>
